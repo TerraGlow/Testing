@@ -4,22 +4,14 @@ provider "google" {
   project      = "hidden-cosmos-428006-c1"
 }
 
-module "dl-bucket" {
-  source  = "app.terraform.io/daslearning-new/dl-bucket/google"
+module "project" {
+  source  = "app.terraform.io/Tanjiro/project/gcp"
   version = "0.0.1"
   # insert required variables here
   bucket_name = "daslearning-m-bt"
   location    = "asia-south1"
 }
 
-module "dl-bucket2" {
-  source  = "app.terraform.io/daslearning-new/dl-bucket/google"
-  version = "0.0.2"
-  # insert required variables here
-  bucket_name = "daslearning-m-bt2"
-  location    = "asia-south1"
-  project     = "daslearning"
-}
 
 output "bucket_id" {
   value = module.dl-bucket.bucket_id
@@ -29,18 +21,3 @@ output "bucket_id2" {
   value = module.dl-bucket2.bucket_id
 }
 
-/*
-resource "google_storage_bucket" "bucket2" {
-  name     = "daslearning-tf-cld2"
-  location = "ASIA-SOUTH1"
-}
-
-
-# Create bucket using module
-
-  
-  bucket_name = "daslearning-m-bt"
-  location    = "asia-south1"
-  project     = "daslearning"
-}
-*/
